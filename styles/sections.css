@@ -1,0 +1,61 @@
+/* Page-specific section layouts */
+.home-services {
+  padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+}
+
+.home-services .section-header {
+  margin-left: clamp(1rem, 8vw, 6rem);
+}
+
+.testimonials {
+  padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.testimonials .quote-block:nth-child(2) {
+  margin-top: 2rem;
+}
+
+.services-page .service-block:nth-child(odd) {
+  background: var(--paper);
+}
+
+.services-page .service-block:nth-child(even) {
+  background: var(--paper-dark);
+}
+
+.regions-hero {
+  position: relative;
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+  min-height: 60vh;
+}
+
+.regions-hero__map {
+  position: absolute;
+  top: 0;
+  right: -5%;
+  width: 65%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  opacity: 0.95;
+  z-index: 0;
+}
+
+.regions-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 40%;
+  padding-top: 2rem;
+}
+
+.regions-hero .region-dot:nth-child(1) { top: 28%; right: 42%; }
+.regions-hero .region-dot:nth-child(2) { top: 45%; right: 35%; }
+.regions-hero .region-dot:nth-child(3) { top: 62%; right: 38%; }
+.regions-hero .region-dot:nth-child(4) { top: 72%; right: 48%; }
+
+.regions-map-container {
+  position: relative;
+}

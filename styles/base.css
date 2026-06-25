@@ -1,0 +1,305 @@
+/* Tasman Supply Chain Ltd — Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant:ital,wght@1,400;1,500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --indigo-deep: #1F2A44;
+  --indigo-mid: #2E3A5F;
+  --indigo-soft: #4A5A85;
+  --indigo-pale: #C7CEDE;
+  --lime: #C6E84B;
+  --lime-soft: #E3F2A8;
+  --lime-deep: #8FA62B;
+  --paper: #F7F4EC;
+  --paper-dark: #EDE8DA;
+  --ink: #2A2A28;
+  --ink-soft: #6B6862;
+  --white: #FFFFFF;
+
+  --wash-indigo: radial-gradient(circle, rgba(31,42,68,0.08), transparent 70%);
+  --wash-lime: radial-gradient(circle, rgba(198,232,75,0.15), transparent 70%);
+
+  --font-display: 'Shippori Mincho', serif;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
+  --font-caption: 'Cormorant', serif;
+
+  --text-hero: clamp(2.6rem, 5.5vw, 5rem);
+  --text-h1: clamp(2rem, 4vw, 3.4rem);
+  --text-h2: clamp(1.4rem, 2.8vw, 2.2rem);
+  --text-h3: clamp(1.1rem, 1.8vw, 1.4rem);
+  --text-body: 1.05rem;
+  --text-small: 0.85rem;
+
+  --section-pad: clamp(4rem, 10vw, 8rem);
+  --content-max: 1400px;
+  --transition-soft: 0.4s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.8;
+  color: var(--ink);
+  background: var(--paper);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+p { margin-bottom: 1.25rem; }
+p:last-child { margin-bottom: 0; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Paper grain texture */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  z-index: 1;
+}
+
+.paper-texture > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ink wash blobs */
+.ink-wash {
+  position: absolute;
+  border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  filter: blur(60px);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: inkBreathe 14s ease-in-out infinite alternate;
+}
+
+.ink-wash--indigo {
+  background: radial-gradient(ellipse, rgba(31,42,68,0.35) 0%, rgba(46,58,95,0.15) 50%, transparent 75%);
+}
+
+.ink-wash--lime {
+  background: radial-gradient(ellipse, rgba(198,232,75,0.2) 0%, transparent 70%);
+}
+
+@keyframes inkBreathe {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
+  50% { transform: scale(1.06) translate(8px, -6px); opacity: 0.5; }
+  100% { transform: scale(0.98) translate(-4px, 4px); opacity: 0.42; }
+}
+
+/* Brush stroke dividers */
+.brush-divider {
+  width: 100%;
+  height: 12px;
+  display: block;
+  margin: 2rem 0;
+}
+
+.brush-divider--lime path { stroke: var(--lime); }
+.brush-divider--indigo path { stroke: var(--indigo-pale); }
+.brush-divider--paper path { stroke: var(--paper); }
+
+/* Hand-drawn underline SVG */
+.hand-underline {
+  position: relative;
+  display: inline;
+}
+
+.hand-underline svg {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 8px;
+  overflow: visible;
+}
+
+.hand-underline path,
+.hand-circle path {
+  fill: none;
+  stroke: var(--lime);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 0.7s ease-out;
+}
+
+.hand-underline.is-drawn path,
+.hand-circle.is-drawn path,
+.hand-underline:hover path,
+.link-lime:hover .hand-underline path {
+  stroke-dashoffset: 0;
+}
+
+/* Text links */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition-soft);
+}
+
+.text-link--lime {
+  color: var(--ink);
+}
+
+.text-link--lime::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease-out;
+}
+
+.text-link--lime:hover::after {
+  transform: scaleX(1);
+}
+
+.text-link--indigo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--indigo-soft);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease-out;
+}
+
+.text-link--indigo:hover::after {
+  transform: scaleX(1);
+}
+
+/* Eyebrow captions */
+.eyebrow {
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-size: var(--text-small);
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.maori-sub {
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Section backgrounds */
+.section {
+  padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  transition: background-color 0.6s ease;
+}
+
+.section--paper { background: var(--paper); }
+.section--paper-dark { background: var(--paper-dark); }
+.section--indigo { background: var(--indigo-deep); color: var(--paper); }
+.section--indigo .maori-sub,
+.section--indigo .eyebrow { color: var(--indigo-pale); }
+
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image fallback placeholders */
+.img-fallback {
+  background: linear-gradient(135deg, var(--indigo-mid) 0%, var(--indigo-deep) 50%, var(--paper-dark) 100%);
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  border-radius: 55% 45% 60% 40% / 50% 55% 45% 50%;
+  background: var(--wash-indigo);
+  filter: blur(30px);
+}

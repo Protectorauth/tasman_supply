@@ -1,0 +1,133 @@
+/* Hero sections */
+.hero {
+  min-height: calc(100vh - 80px);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero--split {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  min-height: calc(100vh - 80px);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+}
+
+.hero__content--offset {
+  padding-left: clamp(2rem, 8vw, 6rem);
+  padding-right: clamp(2rem, 6vw, 4rem);
+}
+
+.hero__title {
+  font-size: var(--text-hero);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  max-width: 14ch;
+}
+
+.hero__subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--ink-soft);
+  line-height: 1.8;
+  max-width: 38ch;
+  margin-bottom: 2.5rem;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+.hero__image-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__image-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-size: var(--text-small);
+  color: var(--paper);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.hero__ink-wash {
+  width: 280px;
+  height: 280px;
+  top: 20%;
+  left: -60px;
+}
+
+/* Page hero (inner pages) */
+.page-hero {
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  position: relative;
+}
+
+.page-hero__title {
+  font-size: var(--text-h1);
+  max-width: 20ch;
+}
+
+.page-hero__breadcrumb {
+  margin-bottom: 1.5rem;
+}
+
+.page-hero--bg {
+  min-height: 50vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-hero__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.page-hero--bg .page-hero__content {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  max-width: 45%;
+  margin-left: clamp(1.5rem, 5vw, 4rem);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+/* Hand-drawn underline on load */
+.hero .hand-underline path {
+  animation: drawUnderline 0.8s ease-out 0.5s forwards;
+}
+
+@keyframes drawUnderline {
+  to { stroke-dashoffset: 0; }
+}
